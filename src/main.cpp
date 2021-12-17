@@ -19,9 +19,14 @@ int main(int argc, char *argv[]) {
             << "\n";
   std::cout << std::setw(12) << std::left
             << "* Status: " << (std::string)series["data"][0]["status"] << "\n";
-  std::cout << std::setw(12) << std::left
-            << "* Synopsis: " << (std::string)series["data"][0]["overview"]
-            << std::endl;
+  if (series["data"][0]["overview"].is_null()) {
+    std::cout << std::setw(12) << std::left << "* Synopsis: "
+              << "No synopsis available." << std::endl;
+  } else {
+    std::cout << std::setw(12) << std::left
+              << "* Synopsis: " << (std::string)series["data"][0]["overview"]
+              << std::endl;
+  }
 
   return EXIT_SUCCESS;
 }
